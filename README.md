@@ -25,7 +25,8 @@ code in the `${theme}.js` file, so to be safe, you should make sure that you
 trust the code in each theme file before you run it call `.theme()` on it, and
 you should **never** modify this module to allow insecure downloads over http.
 
-With the big scary warning out of the way, example usage is as follows:
+With the big scary warning out of the way, once you have downloaded `BlinkThemes.js`
+and placed it in your Scriptable scripts folder, example usage is as follows:
 
 ```javascript
 const BlinkThemes = importModule("BlinkThemes");
