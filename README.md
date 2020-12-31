@@ -2,12 +2,41 @@
 
 This repository contains some of my [Scriptable](https://scriptable.app/) scripts.
 
+## iFetch
+
+This module is a configurable widget for your home screen:
+
+![iFetch Preview](./images/ifetch-preview.png)
+
+<details>
+<summary> Fullscreen Preview </summary>
+
+![Fullscreen iFetch Preview](./images/fullscreen-ifetch-preview.png)
+
+</details>
+
+### Usage
+
+First, download the `iFetch.js` and `BlinkThemes.js` files and put them in your
+Scriptable scripts folder. You will also need the `cache.js` file from
+[evandcoleman's GitHub](https://github.com/evandcoleman/scriptable/blob/main/scripts/cache.js),
+be sure to capitalize the "c" and rename it to `Cache.js` though.
+
+Then, go through the code and read the comments (the lighter text behind the
+double slashes: `//`), and replace the empty values as instructed. You should be able
+to get everything up and running just by modifying the `THEME` and `CONFIG` variables.
+
+If you end up adding more stuff such as extra functions to get other pieces of
+information, feel free to open a pull request!
+
 ## BlinkThemes
 
 This module can be used to get objects containing terminal color themes from the
 [Blink Themes GitHub repo](https://github.com/blinksh/themes/).
 
 ### Usage
+
+First, download the `BlinkThemes.js` file and put it in your Scriptable scripts folder.
 
 The module contains two asynchronous functions: `.listThemes()` and
 `.hexTheme(theme_name: string)`, and two synchronous functions:
@@ -43,7 +72,7 @@ console.log(await BlinkThemes.hexTheme("Nord"));
 console.log(BlinkThemes.colorTheme(await BlinkThemes.hexTheme("Nord")));
 /*
  * This statement logs an object containing all properties of the theme as
- * scriptable Color objects.
+ * Scriptable Color objects.
  */
 console.log(
   BlinkThemes.dynamicTheme(
@@ -53,7 +82,7 @@ console.log(
 );
 /*
  * This statement logs an object containing all a theme similar to the previous
- * one, except all colors are scriptable Color.dynamic objects where the light
+ * one, except all colors are Scriptable Color.dynamic objects where the light
  * theme colors are made up of the "Solarized Light" theme and the dark theme
  * colors are made up of "Solarized Dark".
  */
