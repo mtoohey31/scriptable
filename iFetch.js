@@ -4,7 +4,7 @@
 // NOTE: This script was written by mtoohey31: https://github.com/mtoohey31/scriptable, and was adapted from https://github.com/evandcoleman/scriptable and https://gist.github.com/spencerwooo/7955aefc4ffa5bc8ae7c83d85d05e7a4.
 
 const Cache = importModule("Cache");
-const cache = new Cache("ioFetchCache");
+const cache = new Cache("iFetchCache");
 const BlinkThemes = importModule("BlinkThemes");
 
 // const LIGHT_THEME = BlinkThemes.colorTheme(await BlinkThemes.hexTheme("Nord"));
