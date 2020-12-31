@@ -20,14 +20,17 @@ This module is a configurable widget for your home screen:
 First, download the `iFetch.js` and `BlinkThemes.js` files and put them in your
 Scriptable scripts folder. You will also need the `cache.js` file from
 [evandcoleman's GitHub](https://github.com/evandcoleman/scriptable/blob/main/scripts/cache.js),
-be sure to capitalize the "c" and rename it to `Cache.js` though.
+be sure to capitalize the "c" and rename it to `Cache.js` though. Also, if you
+plan on using the BlinkThemes module, be sure to read the security note below.
 
 Then, go through the code and read the comments (the lighter text behind the
 double slashes: `//`), and replace the empty values as instructed. You should be able
 to get everything up and running just by modifying the `THEME` and `CONFIG` variables.
 
 If you end up adding more stuff such as extra functions to get other pieces of
-information, feel free to open a pull request!
+information, feel free to open a pull request, also, if you know of a good way to
+perform the resolution of the asynchronous functions in the `CONFIG` variable all at
+the same time so that none are blocking the others, please shoot me a message!
 
 ## BlinkThemes
 
