@@ -1,24 +1,15 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
-// icon-color: deep-purple; icon-glyph: magic;
+// icon-color: cyan; icon-glyph: palette;
 // NOTE: This script was written by mtoohey31: https://github.com/mtoohey31/scriptable
 
-const fm = FileManager.local();
-if (
-  !fm.isDirectory(
-    fm.joinPath(fm.cacheDirectory(), "dk.simonbs.Scriptable/Cache.BlinkThemes")
-  )
-) {
-  fm.createDirectory(
-    fm.joinPath(fm.cacheDirectory(), "dk.simonbs.Scriptable/Cache.BlinkThemes")
-  );
+const fm = FileManager.iCloud();
+if (!fm.isDirectory(fm.joinPath(fm.documentsDirectory(), "BlinkThemesCache"))) {
+  fm.createDirectory(fm.joinPath(fm.documentsDirectory(), "BlinkThemesCache"));
 }
-const cacheDir = fm.joinPath(
-  fm.cacheDirectory(),
-  "dk.simonbs.Scriptable/Cache.BlinkThemes"
-);
+const cacheDir = fm.joinPath(fm.documentsDirectory(), "BlinkThemesCache");
 
-module.exports.themes = async function () {
+module.exports.listThemes = async function () {
   let req = new Request(
     "https://api.github.com/repos/blinksh/themes/git/trees/master?recursive=1"
   );
@@ -32,7 +23,7 @@ module.exports.themes = async function () {
   return themesSoFar;
 };
 
-module.exports.theme = async function (themeName) {
+module.exports.hexTheme = async function (themeName) {
   saveThemeString(addExports(await fetchThemeString(themeName)), themeName);
   try {
     let importedValues = importModule(fm.joinPath(cacheDir, `${themeName}.js`));
@@ -105,4 +96,125 @@ function renameKeys(importedValues) {
     },
   };
 }
+
+module.exports.colorTheme = function (hexTheme) {
+  try {
+    return {
+      special: {
+        background: new Color(hexTheme.special.background),
+        foreground: new Color(hexTheme.special.foreground),
+        cursor: new Color(hexTheme.special.cursor),
+      },
+      colors: {
+        color0: new Color(hexTheme.colors.color0),
+        color1: new Color(hexTheme.colors.color1),
+        color2: new Color(hexTheme.colors.color2),
+        color3: new Color(hexTheme.colors.color3),
+        color4: new Color(hexTheme.colors.color4),
+        color5: new Color(hexTheme.colors.color5),
+        color6: new Color(hexTheme.colors.color6),
+        color7: new Color(hexTheme.colors.color7),
+        color8: new Color(hexTheme.colors.color8),
+        color9: new Color(hexTheme.colors.color9),
+        color10: new Color(hexTheme.colors.color10),
+        color11: new Color(hexTheme.colors.color11),
+        color12: new Color(hexTheme.colors.color12),
+        color13: new Color(hexTheme.colors.color13),
+        color14: new Color(hexTheme.colors.color14),
+        color15: new Color(hexTheme.colors.color15),
+      },
+    };
+  } catch {
+    throw "The given hexTheme argument contains unsupported syntax.";
+  }
+};
+
+module.exports.dynamicTheme = function (colorThemeLight, colorThemeDark) {
+  try {
+    return {
+      special: {
+        background: Color.dynamic(
+          colorThemeLight.special.background,
+          colorThemeDark.special.background
+        ),
+        foreground: Color.dynamic(
+          colorThemeLight.special.foreground,
+          colorThemeDark.special.foreground
+        ),
+        cursor: Color.dynamic(
+          colorThemeLight.special.cursor,
+          colorThemeDark.special.cursor
+        ),
+      },
+      colors: {
+        color0: Color.dynamic(
+          colorThemeLight.colors.color0,
+          colorThemeDark.colors.color0
+        ),
+        color1: Color.dynamic(
+          colorThemeLight.colors.color1,
+          colorThemeDark.colors.color1
+        ),
+        color2: Color.dynamic(
+          colorThemeLight.colors.color2,
+          colorThemeDark.colors.color2
+        ),
+        color3: Color.dynamic(
+          colorThemeLight.colors.color3,
+          colorThemeDark.colors.color3
+        ),
+        color4: Color.dynamic(
+          colorThemeLight.colors.color4,
+          colorThemeDark.colors.color4
+        ),
+        color5: Color.dynamic(
+          colorThemeLight.colors.color5,
+          colorThemeDark.colors.color5
+        ),
+        color6: Color.dynamic(
+          colorThemeLight.colors.color6,
+          colorThemeDark.colors.color6
+        ),
+        color7: Color.dynamic(
+          colorThemeLight.colors.color7,
+          colorThemeDark.colors.color7
+        ),
+        color8: Color.dynamic(
+          colorThemeLight.colors.color8,
+          colorThemeDark.colors.color8
+        ),
+        color9: Color.dynamic(
+          colorThemeLight.colors.color9,
+          colorThemeDark.colors.color9
+        ),
+        color10: Color.dynamic(
+          colorThemeLight.colors.color10,
+          colorThemeDark.colors.color10
+        ),
+        color11: Color.dynamic(
+          colorThemeLight.colors.color11,
+          colorThemeDark.colors.color11
+        ),
+        color12: Color.dynamic(
+          colorThemeLight.colors.color12,
+          colorThemeDark.colors.color12
+        ),
+        color13: Color.dynamic(
+          colorThemeLight.colors.color13,
+          colorThemeDark.colors.color13
+        ),
+        color14: Color.dynamic(
+          colorThemeLight.colors.color14,
+          colorThemeDark.colors.color14
+        ),
+        color15: Color.dynamic(
+          colorThemeLight.colors.color15,
+          colorThemeDark.colors.color15
+        ),
+      },
+    };
+  } catch {
+    throw "One of the given arguments contains unsupported syntax.";
+  }
+};
 
