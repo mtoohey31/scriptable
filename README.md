@@ -55,7 +55,7 @@ The module contains two asynchronous functions: `.listThemes()` and
 **Security Note:** If you plan on using this script, please be aware that the
 themes files in the Blink Themes repository are `.js` files and the
 `.hexTheme()` method works by downloading the content of the `${theme}.js` file,
-prepending a few lines to the start that define a function that pretends to be
+and prepending a few lines to the start that define a function that pretends to be
 Blink's `t.prefs_.set()` function. This function then adds any values that are
 passed to `t.prefs_.set()` to `module.exports`. This means that it is running
 all the code in the `${theme}.js` file, so to be safe, you should make sure that
