@@ -29,10 +29,7 @@ able to get everything up and running just by modifying the `THEME` and `CONFIG`
 variables.
 
 If you end up adding more stuff such as extra functions to get other pieces of
-information, feel free to open a pull request, also, if you know of a good way to
-perform the resolution of the asynchronous functions in the `CONFIG` variable
-all at the same time so that none are blocking the others, please shoot me a
-message!
+information, feel free to open a pull request!
 
 ## BlinkThemes
 
